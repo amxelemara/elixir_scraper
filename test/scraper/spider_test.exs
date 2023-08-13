@@ -1,6 +1,5 @@
 defmodule SpiderTest do
   use ExUnit.Case
-  import TestServer
 
   setup do
     webserver = {Plug.Cowboy, plug: TestServer, scheme: :http, options: [port: 4000]}

@@ -25,6 +25,8 @@ defmodule Scraper.MixProject do
       {:httpoison, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"},
       {:meeseeks, "~> 0.17.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"},
     ]
   end
 

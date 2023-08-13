@@ -1,6 +1,9 @@
 defmodule Parser do
   import Meeseeks.CSS
   
+  @doc """
+    Given a html string returns a list of relative links.
+    """
   def get_paths(html) do
     html
     |> Meeseeks.parse()

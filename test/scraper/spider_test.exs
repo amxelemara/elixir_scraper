@@ -3,7 +3,9 @@ defmodule SpiderTest do
 
   test "fetch a web page" do
     url = "localhost:4000/"
-    assert :http200  == elem(Spider.get(url), 0)
+    {:ok, spider} = Spider.start_link(url)
+    {status, _} = Spider.scrape("/")
+    assert :http200  == status
   end
   
 end

@@ -21,6 +21,11 @@ defmodule TestServer do
     </head>
     <body>
       <h1> Welcome to dummy site </h1>
+      <div>
+        <a href="about/"> about </a>
+      </div>
+
+    <a href="https://www.google.com"> external link </a>
     </body>
     """
   end

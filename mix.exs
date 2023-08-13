@@ -23,7 +23,8 @@ defmodule Scraper.MixProject do
   defp deps do
     [
       {:httpoison, "~> 2.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:meeseeks, "~> 0.17.0"},
     ]
   end
 

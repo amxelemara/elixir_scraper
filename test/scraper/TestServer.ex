@@ -10,6 +10,18 @@ defmodule TestServer do
     send_resp(conn, 200, render_page() )
   end
 
+  get "about/" do
+    send_resp(conn, 200, render_page())
+  end
+
+  get "shop/" do
+    send_resp(conn, 200, render_page() )
+  end
+
+  get "profile/" do
+    send_resp(conn, 200, render_page() )
+  end
+
   match _ do
     send_resp(conn, 404, "not found")
   end

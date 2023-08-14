@@ -5,3 +5,5 @@ config :scraper, Scraper.Repo,
   username: "user",
   password: "pass",
   hostname: "localhost"
+
+config :scraper, ecto_repos: [Scraper.Repo]

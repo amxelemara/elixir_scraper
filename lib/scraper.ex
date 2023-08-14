@@ -12,6 +12,12 @@ defmodule Scraper do
       :world
 
   """
+  use Application
+
+  def start(_type, _args) do
+    Scraper.Supervisor.start_link(name: Scraper.Supervisor)
+  end
+
   def hello do
     :world
   end

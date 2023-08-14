@@ -27,13 +27,14 @@ defmodule Scraper.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:meeseeks, "~> 0.17.0"},
       {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 
   defp elixirc_paths(:test) do
     ["lib", "test/scraper"]
   end
+
   defp elixirc_paths(_) do
     ["lib"]
   end

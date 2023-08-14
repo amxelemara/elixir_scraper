@@ -10,7 +10,7 @@ defmodule SpiderTest do
 
   test "fetch a web page", %{spider: spider} do
     {status, resp} = Spider.scrape(spider, "/")
-    assert {:ok, 200} == {status , resp.status_code}
+    assert {:ok, 200} == {status, resp.status_code}
   end
 
   test "scrape multiple pages and message", %{spider: spider} do
@@ -18,12 +18,12 @@ defmodule SpiderTest do
 
     results =
       Spider.crawl_async(spider, paths)
-      |> Enum.map( &(Task.await(&1)) )
+      |> Enum.map(&Task.await(&1))
 
     assert length(results) == 3
+
     Enum.each(results, fn {status, resp} ->
-      assert {:ok, 200} == {status , resp.status_code}
-      end
-    )
+      assert {:ok, 200} == {status, resp.status_code}
+    end)
   end
 end

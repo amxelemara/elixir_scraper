@@ -11,6 +11,7 @@ defmodule Scraper.Supervisor do
       Scraper.Repo,
       {Task.Supervisor, name: SpiderSupervisor}
     ]
+
     Supervisor.init(children, strategy: :one_for_one)
   end
 end

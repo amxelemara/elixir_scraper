@@ -1,9 +1,9 @@
 defmodule Parser do
   import Meeseeks.CSS
-  
+
   @doc """
-    Given a html string returns a list of relative links.
-    """
+  Given a html string returns a list of relative links.
+  """
   def get_paths(html) do
     html
     |> Meeseeks.parse()
@@ -18,13 +18,12 @@ defmodule Parser do
     |> elem(1)
     |> List.first()
     |> elem(1)
-  
   end
+
   defp is_relative_link(link) do
     case URI.parse(link).authority() do
       nil -> true
       _ -> false
     end
   end
-  
 end

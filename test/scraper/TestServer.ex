@@ -1,13 +1,13 @@
 defmodule TestServer do
   @moduledoc """
-    A dummy server to test scraping against
-    """
+  A dummy server to test scraping against
+  """
   use Plug.Router
-  plug :match
-  plug :dispatch
-  
+  plug(:match)
+  plug(:dispatch)
+
   get "/" do
-    send_resp(conn, 200, render_page() )
+    send_resp(conn, 200, render_page())
   end
 
   get "about/" do
@@ -15,11 +15,11 @@ defmodule TestServer do
   end
 
   get "shop/" do
-    send_resp(conn, 200, render_page() )
+    send_resp(conn, 200, render_page())
   end
 
   get "profile/" do
-    send_resp(conn, 200, render_page() )
+    send_resp(conn, 200, render_page())
   end
 
   match _ do

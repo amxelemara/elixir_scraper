@@ -2,16 +2,16 @@ defmodule TestServer do
   @moduledoc """
     A dummy server to test scraping against
     """
-  import Plug.Conn
+  use Plug.Router
+  plug :match
+  plug :dispatch
   
-  def init(options) do
-    options
+  get "/" do
+    send_resp(conn, 200, render_page() )
   end
 
-  def call(conn, _opts) do
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, render_page())
+  match _ do
+    send_resp(conn, 404, "not found")
   end
 
   def render_page() do

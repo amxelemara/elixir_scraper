@@ -7,18 +7,30 @@ defmodule Spider do
     """
   def start_link(url) do
     Agent.start_link(fn -> %{url: url} end)
+
   end
 
   @doc """
     GET a page from a path using the base url
     """
   def scrape(spider, path) do
-    Agent.get(spider, fn state -> state[:url] end ) <> path
+    Agent.get(spider, fn state -> state[:url] end ) <> "/" <> path
     |> HTTPoison.get(header())
 
     # base_url = Agent.get(spider, fn state -> state[:url] end )
     # url = base_url <> path
     # HTTPoison.get(url)
+  end
+
+  def crawl_async(spider, paths) do
+    Enum.map(
+      paths,
+      &( Task.Supervisor.async(SpiderSupervisor, fn  -> 
+        scrape(spider, &1)
+      end
+        )
+      )
+    )
   end
 
   defp header() do

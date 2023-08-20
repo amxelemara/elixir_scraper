@@ -46,9 +46,10 @@ defmodule SpiderServer do
   end
 
   @impl true
-  def handle_call({:fetch, url }, _from, _) do
+  def handle_call({:fetch, url, parser }, _from, _) do
     task = Task.Supervisor.async_nolink(SpiderSupervisor, fn ->
       HTTPoison.get(url, header())
+      |> parser.parse()
     end)
     {:reply, task, []}
   end

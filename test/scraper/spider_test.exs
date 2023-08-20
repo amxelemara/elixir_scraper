@@ -28,12 +28,19 @@ defmodule SpiderTest do
   end
 
   test "start a scrape task from server", %{url: url} do
+
     uri = url <> "/"
     {:ok, pid} = GenServer.start_link(SpiderServer, [])
-    task = GenServer.call(pid, {:fetch, uri} )
+    task = GenServer.call(pid, {:fetch, uri, DummyParser} )
     assert %Task{} = task
     # Race condition here, #REFCTOR
     Process.sleep(1000)
     assert Process.alive?(task.pid) == false
+  end
+end
+
+defmodule DummyParser do
+  def parse(_) do
+    :ok
   end
 end

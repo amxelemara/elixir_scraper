@@ -5,7 +5,7 @@ defmodule SpiderTest do
     port = 4016
     url = "localhost:#{port}"
     {:ok, spider} = Spider.start_link(url)
-    %{spider: spider}
+    %{spider: spider, url: url}
   end
 
   test "fetch a web page", %{spider: spider} do
@@ -25,5 +25,15 @@ defmodule SpiderTest do
     Enum.each(results, fn {status, resp} ->
       assert {:ok, 200} == {status, resp.status_code}
     end)
+  end
+
+  test "start a scrape task from server", %{url: url} do
+    uri = url <> "/"
+    {:ok, pid} = GenServer.start_link(SpiderServer, [])
+    task = GenServer.call(pid, {:fetch, uri} )
+    assert %Task{} = task
+    # Race condition here, #REFCTOR
+    Process.sleep(1000)
+    assert Process.alive?(task.pid) == false
   end
 end

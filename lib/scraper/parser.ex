@@ -1,9 +1,20 @@
 defmodule Parser do
+  @doc "Parse the input data"
+  @callback  parse(String.t) :: {:ok, term}
+end
+
+defmodule PathParser do
   import Meeseeks.CSS
+  @behaviour Parser
 
   @doc """
   Given a html string returns a list of relative links.
   """
+  @impl Parser
+  def parse(html) do
+    {:ok, get_paths(html)}
+  end
+
   def get_paths(html) do
     html
     |> Meeseeks.parse()

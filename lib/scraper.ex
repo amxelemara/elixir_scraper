@@ -1,6 +1,6 @@
 defmodule Scraper do
   @moduledoc """
-  Documentation for `Scraper`.
+    A web scraper
   """
 
   @doc """

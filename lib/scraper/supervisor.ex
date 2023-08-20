@@ -9,6 +9,7 @@ defmodule Scraper.Supervisor do
   def init(:ok) do
     children = [
       Scraper.Repo,
+      Scraper.Server,
       {Task.Supervisor, name: SpiderSupervisor}
     ]
 

@@ -37,12 +37,16 @@ defmodule Spider do
   end
 end
 
-defmodule SpiderServer do
+defmodule Scraper.Server do
   use GenServer
 
   @impl true
   def init(state) do
     {:ok, state}
+  end
+
+  def start_link(default) do
+    GenServer.start_link(__MODULE__, default, name: SpiderServer)
   end
 
   @impl true

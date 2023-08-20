@@ -17,7 +17,7 @@ defmodule PathParser do
 
   def get_paths(html) do
     html
-    |> Meeseeks.parse()
+    |> Meeseeks.parse(:html)
     |> Meeseeks.all(css("a"))
     |> Enum.map(&extract_link/1)
     |> Enum.filter(&is_relative_link/1)

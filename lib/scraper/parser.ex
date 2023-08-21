@@ -1,6 +1,6 @@
 defmodule Parser do
   @doc "Parse the input data"
-  @callback  parse(String.t) :: {:ok, term}
+  @callback  parse(term) :: {:ok, term}
 end
 
 defmodule PathParser do

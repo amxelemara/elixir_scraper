@@ -50,16 +50,18 @@ defmodule Scraper.Server do
   end
 
   @impl true
-  def handle_call({:fetch, url, parser }, _from, _) do
+  def handle_call({:fetch, url, parser }, _from, state) do
     task = Task.Supervisor.async_nolink(SpiderSupervisor, fn ->
       HTTPoison.get(url, header())
+      |> elem(1)
       |> parser.parse()
     end)
-    {:reply, task, []}
+    {:reply, task, state}
   end
 
   @impl true
   def handle_info({ref, _answer}, state) do
+    # do something with data
     Process.demonitor(ref)
     {:noreply, state}
   end
